@@ -1,0 +1,58 @@
+
+public class QueueDs {
+	private int rear;
+	private int front;
+	private int size;
+	private Object[] queuearray;
+	public QueueDs(int size)
+	{
+		this.size=size;
+		queuearray=new Object[size];
+		this.rear=-1;
+		this.front=-1;
+	}
+	public void enqueue(Object item)
+	{
+		if(this.rear==size-1)
+			System.out.println("Queue is full");
+		else
+		{
+			this.rear+=1;
+			queuearray[this.rear]=item;
+		}
+	}
+	public void dequeue()
+	{
+		if(this.rear==-1 && this.front==-1)
+		{
+			System.out.println("Queue is empty");
+		}
+		else
+		{
+			this.front+=1;
+			//System.out.println(queuearray[front]);
+			queuearray[this.front]=null;
+		}
+	}
+	public void peek()
+	{
+		System.out.println(queuearray[rear]);
+	}
+	public void display()
+	{
+		for(int i=this.front+1;i<=this.rear;i++)
+			System.out.println(queuearray[i]);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		QueueDs queue=new QueueDs(5);
+		queue.enqueue("suneel");
+		queue.enqueue("satya");
+		queue.enqueue("sreenu");
+		queue.enqueue("vamsi");
+		queue.dequeue();
+		queue.dequeue();
+		queue.display();
+	}
+
+}

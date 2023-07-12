@@ -1,0 +1,158 @@
+package linked_list;
+
+class Node{
+    public Object item;
+    public Node next;//pointing to next node
+}
+public class Insert {
+    private int size;
+    private Node head;
+   public Insert(){
+        this.size=0;
+        this.head= null;   
+   }
+   public void insertingnode(String i){
+    Node node= new Node();
+    node.item= i;
+    Node current=this.head;
+    if (this.head==null){
+        this.head=node;
+        this.head.next= null;
+        this.size=1;
+        //System.out.println(this.head.toString());
+    }else{
+        while(current.next!=null){
+            current=current.next;
+        }
+        current.next=node;
+        node.next=null;
+        this.size+=1;
+    }
+   }
+   public void addAtStarting(String i)
+   {
+	   Node n=new Node();
+	   n.item=i;
+	   n.next=this.head;
+	   this.head=n;
+	   this.size+=1;
+   }
+   public void addAtMiddle(String i,int pos)
+   {
+	   Node n=new Node();
+	   Node current=this.head;
+	   if(this.head != null && pos <=this.size)
+	   {
+		   for(int j=0;j<pos-1;j++)
+			   current=current.next;
+		   n.item=i;
+		   n.next=current.next;
+		   current.next=n;
+		   this.size+=1;
+	   }
+	   else
+	   {
+		   System.out.println("doesnt possible to add at the middel");
+		   
+	   }
+	   
+   }
+   public void deleteAtStart()
+   {
+	   Node current=this.head;
+	   if(this.head == null)
+	   {
+		   System.out.println("no elements are there to delete");
+	   }
+	   else
+	   {
+		   if(this.head.next == null)
+			   this.head=null;
+		   else
+		   {
+			   current=current.next;
+			   this.head=null;
+			   this.head=current;
+			   this.size -= 1;
+		   }
+	   }
+   }
+   public void deleteAtEnd()
+   {
+	   if(this.head == null)
+		   System.out.println("NO elements to delete");
+	   else
+	   {
+		   if(this.head.next==null)
+			   this.head=null;
+		   else
+		   {
+			   Node current=this.head;
+			   while(current.next.next != null) {
+				   current=current.next;
+			   }
+			   current.next=null;
+			   this.size -= 1;
+		   }
+	   }
+   }
+   public void deleteAtMiddle(int pos)
+   {
+	   Node current=this.head;
+	   Node previous=this.head;
+	   if(this.head != null && pos<=this.size)
+	   {
+		   for(int i=0;i<pos;i++) {
+			   previous=current;
+			   current=current.next;
+		   }
+		   previous.next=current.next;
+		   current=null;
+		   this.size -= 1;
+	   }
+   }
+   public void traverse(Object value)
+   {
+	   Node current=this.head;
+	   int flag=0,index=0;
+	   while(current.next != null)
+	   {
+		   index+=1;
+		   if(current.item.equals(value))
+		   {
+			   flag=-1;
+			   System.out.println("succussful search at node "+index);
+			   break;
+		   }
+		   current=current.next;
+	   }
+	   if(flag == 0)
+		   System.out.println("unsuccessful search");
+	}
+   public void display()
+   {
+	   Node current=this.head;
+	   for(int i=0;i<this.size;i++)
+	   {
+		   System.out.print(current.item+ " ");
+		   current=current.next;
+	   }
+	   System.out.println();
+   }
+   public static void main(String[] args)
+   {
+	   Insert ins=new Insert();
+	   ins.insertingnode("suneel");
+	   ins.insertingnode("mahesh");
+	   ins.insertingnode("bunny");
+	   ins.insertingnode("charan");
+	   ins.addAtStarting("vamsi");
+	   ins.addAtMiddle("vishnu", 2);
+	   ins.addAtMiddle("10", 3);
+	   ins.deleteAtEnd();
+	   ins.deleteAtStart();
+	   ins.deleteAtMiddle(1);
+	   ins.traverse("10");
+	   ins.display();
+   }
+}

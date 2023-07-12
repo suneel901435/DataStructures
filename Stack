@@ -1,0 +1,57 @@
+package Stack;
+public class StackDs {
+	private Object[] stackarray;
+	private int top;
+	private int size;
+	public StackDs(int size)
+	{
+		this.size=size;
+		this.top=-1;
+		stackarray=new Object[size];
+	}
+	public void push(Object item)
+	{
+		if(top>=size-1)
+		{
+			System.out.println("Stack is full");
+		}
+		else
+		{
+			top++;
+			//System.out.println("Successfully pushed");
+			stackarray[top]=item;
+		}
+	}
+	public void pop()
+	{
+		if(top == -1)
+		{
+			System.out.println("Stack is empty");
+		}
+		else
+		{
+			stackarray[top]=null;
+			top-=1;
+		}
+	}
+  public void peek()
+  {
+      System.out.println(stackarray[top]);
+  }
+	public void display()
+	{
+		for(int i=0;i<=top;i++)
+			System.out.println(stackarray[i]);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StackDs stack=new StackDs(5);
+		stack.push("suneel");
+		stack.push("sreenu");
+		stack.push("satya");
+		stack.push("sharuk");
+		stack.pop();
+		stack.display();
+	}
+
+}
